@@ -1,3 +1,15 @@
 import { Routes } from '@angular/router';
+import { SelectProjectComponent } from '../Components/select-project/select-project.component';
+import { ExcavationDataComponent } from '../Components/excavation-data/excavation-data.component';
+import { MainComponent } from '../Components/main/main.component';
+import { PaymentComponent } from '../Components/payment/payment.component';
+import { PermitComponent } from '../Components/permit/permit.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    {path:'main', component:MainComponent},
+    {path:'select-project', component:SelectProjectComponent},
+    {path:'excavation-data', component:ExcavationDataComponent},
+    {path:'payment', component:PaymentComponent},
+    {path:'permit', component:PermitComponent}
+    
+];
