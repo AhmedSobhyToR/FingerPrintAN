@@ -14,7 +14,7 @@
         @if (getPermits().length>0) {
        
             @for (permit of getPermits(); track $index) {
-                <tr>
+                <tr (click)="viewPermit(permit.id)">
                     <td>{{permit.id}}</td>
                     <td>{{permit.project.projectId}}</td>
                     <td>{{permit.project.projectName}}</td>

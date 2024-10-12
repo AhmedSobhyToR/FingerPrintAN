@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../Models/project.model';
 import { FormGroup } from '@angular/forms';
-import { Excavation } from '../Models/excavation.mode';
+import { Excavation } from '../Models/excavation.model';
 import { User } from '../Models/user.model';
 import { Permit } from '../Models/permit.model';
 

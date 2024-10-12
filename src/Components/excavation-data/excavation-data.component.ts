@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { DataService } from '../Services/data.service';
-import { Excavation } from '../Models/excavation.mode';
+import { Excavation } from '../Models/excavation.model';
 import { ProgressBarComponent } from "../progress-bar/progress-bar.component";
 import { ExcavationDataEnums } from '../Enums/excavation-data.enum';
 @Component({
@@ -77,8 +77,6 @@ export class ExcavationDataComponent {
     // console.log(this.dataSer.getExcavationDetails);
 
   }
-
-
 
   get excavationMethod(){
     return this.excavationDataForm.get('excavationMethod')

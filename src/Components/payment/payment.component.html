@@ -1,5 +1,5 @@
 <h2>Permit Request</h2>
-<app-progress-bar></app-progress-bar>
+<app-progress-bar ></app-progress-bar>
 <div class="confirm-pay-bg" *ngIf="showConfirmation" (click)="onCancelPayment()"> </div>
 <dialog class="confirm-pay" *ngIf="showConfirmation">
     @if (!showFailedPayment) {
@@ -44,20 +44,13 @@
         </div>
         <h3>Excavation Details</h3>
         <div class="excavation-invoice-details">
-            <div>
                 <p>Project: <span>{{getProjectDetails().projectName}}</span></p>
-            </div>
-            <div>
                 <p>Excavation Method: <span>{{getExcavationDetails().excavationMethod}}</span></p>
                 <p>Excavation Type: <span>{{getExcavationDetails().excavationType}}</span></p>
                 <p>Excavation Duration: <span>{{getExcavationDetails().excavationDuration}}</span></p>
-            </div>
-            <div>
                 <p>Street: <span>{{getExcavationDetails().excavationLocation.street}}</span></p>
                 <p>Area: <span>{{getExcavationDetails().excavationLocation.area}}</span></p>
                 <p>City: <span>{{getExcavationDetails().excavationLocation.city}}</span></p>
-            </div>
-
         </div>
         <h3>Payment Details</h3>
         <div class="invoice-pay-details">

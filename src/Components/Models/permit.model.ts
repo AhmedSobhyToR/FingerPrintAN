@@ -1,4 +1,4 @@
-import { Excavation } from "./excavation.mode";
+import { Excavation } from "./excavation.model";
 import { Project } from "./project.model";
 import { User } from "./user.model";
 

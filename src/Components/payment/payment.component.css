@@ -41,12 +41,13 @@
 .invoice-details{
     margin: 0 auto;
     font-size: 1.3rem;
-    max-width: 1200px;
+    width: 600px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    gap: 0.5rem;
 }
 
 .invoice-details h3{
@@ -66,17 +67,27 @@
     flex-direction: column;
     gap: 0.3rem;
 }
-.excavation-invoice-details div{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
 
 .invoice-user-details,
  .excavation-invoice-details,
   .invoice-pay-details{
+    padding: 0 5rem;
     margin-bottom: 1rem;
+    text-align: center;
+}
+
+.invoice-user-details p,
+ .excavation-invoice-details p,
+.invoice-pay-details p{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+
+}
+p span{
+    min-width: 200px;
+    text-align: center;
+
 }
 
 
