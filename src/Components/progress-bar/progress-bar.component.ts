@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from '../Services/data.service';
 
 @Component({
   selector: 'app-progress-bar',
@@ -8,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './progress-bar.component.css'
 })
 export class ProgressBarComponent {
+  permitRequestStatus!:number;
+  constructor(private dataSer:DataService ){
+
+  }
+
+  ngOnInit(){
+   this.permitRequestStatus = this.dataSer.getPermitRequestStatus;
+  }
 
 }

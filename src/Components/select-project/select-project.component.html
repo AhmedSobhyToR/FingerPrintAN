@@ -1,3 +1,5 @@
+<h2>Permit Request</h2>
+<app-progress-bar></app-progress-bar>
 <div class="project-main">
     <div class="request-header">
         <div>
@@ -15,14 +17,14 @@
     <table>
         <thead>
             <th>Project Number</th>
-            <th>project Name</th>
-            <th>project Type</th>
-            <th>project Status</th>
+            <th>Project Name</th>
+            <th>Project Type</th>
+            <th>Project Status</th>
         </thead>
         <tbody>
             
                 @for (prj of projects; track $index) {
-                    <tr (click)="onSelectProject(prj)" [class.active]="prj===getProject">
+                    <tr (click)="onSelectProject(prj)" [class.active]="prj===selectedProject">
                         <td>{{ prj.projectId }}</td>
                         <td>{{ prj.projectName }}</td>
                         <td>{{ prj.projectType }}</td>
@@ -33,7 +35,7 @@
         </tbody>
     </table>
     <!-- Errors -->
-    @if (!getProject) {
+    @if (!selectedProject) {
         <div class="errors">
             <img src="assets/warning.svg" alt="">
             <p>Please Choose a Project to Continue</p>
@@ -42,9 +44,9 @@
     }
     <!-- Control Buttons -->
     <div class="control-buttons">
-        <input type="button" value="Cancel" id="cancel" (click)="onCancel()">
-       <a [routerLink]="['/excavation-data']"><input type="button" 
-        value="Next" id="confirm" [disabled]="!getProject"></a> 
+       <a routerLink="/permit"><input type="button" value="Cancel" id="cancel" (click)="onCancel()"></a> 
+       <a routerLink='/excavation-data'><input type="button" 
+        value="Next" id="confirm" [disabled]="!selectedProject.projectId" (click)="onSubmit()"></a> 
     </div>
 
 </div>

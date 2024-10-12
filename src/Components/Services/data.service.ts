@@ -3,35 +3,44 @@ import { Project } from '../Models/project.model';
 import { FormGroup } from '@angular/forms';
 import { Excavation } from '../Models/excavation.mode';
 import { User } from '../Models/user.model';
+import { Permit } from '../Models/permit.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   user!:User;
-  selectedProject?:Project;
   excavationDetails!:Excavation;
+  project!:Project;
+  permit!:Permit;
+  permits:Permit[]= [];
+
   excavationDataForm!: FormGroup;
- 
+  // User
   setUser(){
     this.user={
       name:"Ahmed Sobhy",
       phone:"0100000000",
       paymentMethod:"Credit Card",
-      balance: 1500
+      balance: 5000
     }
   }
+
   get getUser(){
     return this.user;
   }
 
-  setProject(prj:Project|undefined){
-    this.selectedProject = prj;
+  // Project
+  setProject(prj:Project){
+      this.permit.project = prj;
+      this.project = prj;
+
   }
   get getProject(){
-    return this.selectedProject;
+    return this.permit.project;
   }
 
+  // Excavation
   get getExcavation(){
     return this.excavationDataForm;
   }
@@ -50,6 +59,7 @@ export class DataService {
       excavationDescription:this.getExcavation.value['excavationDescription'],
       price: Math.ceil(Math.random()* 1700)
     }
+    this.permit.excavation = this.excavationDetails;
   }
 
   get getExcavationDetails(){
@@ -58,13 +68,59 @@ export class DataService {
 
   resetExcavationDetails(){
     this.excavationDataForm.reset();
-    this.excavationDetails = {} as Excavation;
+  }
+  // Permit
+  
+  createPermitRequest(){
+    this.intializePermit();
+    this.permit={
+      id:((this.permits.length)).toString(),
+      user : this.user,
+      project : this.project,
+      excavation : this.excavationDetails,
+      status: 'Pending',
+      RequestStatus: 0
+    }
+    console.log(this.permit);
   }
 
-  setPermit(){
-
+  setPermit(permit: Permit){
+    this.permits.push(permit);
   }
-  get getPermit(){
-    return
+   getPermit(permitId: string){
+    return this.permits[+permitId]
+  }
+
+  get getPermits(){
+    return this.permits;
+  }
+
+  setPermitRequestStatus(requestStatus: number){
+    this.permit.RequestStatus = requestStatus;
+  }
+  get getPermitRequestStatus(){
+    return this.permit.RequestStatus;
+  }
+
+  intializePermit(){
+    this.project = {
+      projectId: '',
+      projectName: '',
+      projectType: '',
+      projectStatus: ''
+    } as Project
+    this.excavationDetails={
+      excavationMethod:'',
+      excavationType: '',
+      excavationDuration: '',
+      excavationLocation:{
+        street: '',
+        area:'',
+        city:'',
+      },
+      excavationDescription: '',
+      price: 0
+    } as Excavation
+   
   }
 } 

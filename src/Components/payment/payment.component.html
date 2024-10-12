@@ -1,3 +1,5 @@
+<h2>Permit Request</h2>
+<app-progress-bar></app-progress-bar>
 <div class="confirm-pay-bg" *ngIf="showConfirmation" (click)="onCancelPayment()"> </div>
 <dialog class="confirm-pay" *ngIf="showConfirmation">
     @if (!showFailedPayment) {
@@ -5,9 +7,9 @@
         <img src="assets/sack-dollar-solid.svg" alt="cash">
         <div class="control-buttons">
             <input type="button" value="Cancel" class="cancel" (click)="onCancelPayment()">
-            <!-- <a routerLink="/permit"> -->
+            <a routerLink="/request-review">
             <input type="submit" value="Confirm" class="confirm" (click)="onConfirmPayment()">
-            <!-- </a> -->
+            </a>
         </div>
     }
     @else {
@@ -43,7 +45,7 @@
         <h3>Excavation Details</h3>
         <div class="excavation-invoice-details">
             <div>
-                <p>Project: <span>{{getProjectDetails()?.projectName}}</span></p>
+                <p>Project: <span>{{getProjectDetails().projectName}}</span></p>
             </div>
             <div>
                 <p>Excavation Method: <span>{{getExcavationDetails().excavationMethod}}</span></p>
@@ -69,7 +71,7 @@
             <a routerLink="/excavation-data"><input type="button" value="Prev" id="prev"></a>
         </div>
         <div class="control-buttons-right">
-            <a routerLink="/select-project"><input type="button" value="Cancel" class="cancel" (click)="onCancel()"></a>
+            <a routerLink="/permit"><input type="button" value="Cancel" class="cancel" (click)="onCancel()"></a>
 
            <a><input type="submit" value="Next" class="confirm" (click)="onSubmit()"></a> 
         </div>

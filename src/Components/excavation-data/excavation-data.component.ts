@@ -5,15 +5,19 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { JsonPipe } from '@angular/common';
 import { DataService } from '../Services/data.service';
 import { Excavation } from '../Models/excavation.mode';
+import { ProgressBarComponent } from "../progress-bar/progress-bar.component";
+import { ExcavationDataEnums } from '../Enums/excavation-data.enum';
 @Component({
   selector: 'app-excavation-data',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, JsonPipe],
+  imports: [RouterLink, ReactiveFormsModule, JsonPipe, ProgressBarComponent],
   templateUrl: './excavation-data.component.html',
   styleUrl: './excavation-data.component.css'
 })
 export class ExcavationDataComponent {
-
+  excavationDataEnums = new ExcavationDataEnums();
+  excavationMethods!: string[];
+  excavationTypes!: string[];
   constructor(private dataSer:DataService){
     
   }
@@ -25,20 +29,27 @@ export class ExcavationDataComponent {
       Validators.pattern('[0-9]{1,}'), Validators.min(1), Validators.max(100)]),
     excavationLocation: new FormGroup({
       street: new FormControl('', [Validators.required]),
-      area: new FormControl('' , [Validators.required]),
-      city: new FormControl('', [Validators.required]),
+      area: new FormControl('' , [Validators.required, Validators.pattern('[A-Za-z]{1,}')]),
+      city: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z]{1,}')]),
     }),
     excavationDescription: new FormControl('')
   })  
 
   ngOnInit(){
-    // this.loadExcavationData();
+    this.loadExcavationData();
+    console.log(this.dataSer.permit);
     this.isFormFilled();
   }
 
   // Load enums into inputs in form
+  addEmptyOption(){
+    this.excavationDataEnums.ExcavationMethods.unshift('')
+    this.excavationDataEnums.ExcavationTypes.unshift('')
+  }
   loadExcavationData(){
-    
+    this.addEmptyOption();
+    this.excavationMethods =this.excavationDataEnums.ExcavationMethods
+    this.excavationTypes = this.excavationDataEnums.ExcavationTypes
   }
 
   // Check if form is already filled
@@ -51,9 +62,9 @@ export class ExcavationDataComponent {
   }
 
   onCancel(){
-    this.dataSer.setProject(undefined);
+
     this.excavationDataForm.reset();
-    this.dataSer.resetExcavationDetails();
+    this.dataSer.setPermitRequestStatus(0);
 
 
   }
@@ -62,9 +73,12 @@ export class ExcavationDataComponent {
       return
     }
     this.dataSer.setExcavationDetails(this.excavationDataForm);
+    this.dataSer.setPermitRequestStatus(2);
     // console.log(this.dataSer.getExcavationDetails);
 
   }
+
+
 
   get excavationMethod(){
     return this.excavationDataForm.get('excavationMethod')
