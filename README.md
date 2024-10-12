@@ -1,4 +1,4 @@
-#FingerPrint is a Permit Request Management System
+# FingerPrint is a Permit Request Management System
 
 that allows users to send an excavation permit request and it will be reviewed by admin
 
